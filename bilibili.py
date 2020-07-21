@@ -49,7 +49,7 @@ class GetUrl:
     async def fetch(self, maps: dict):
         tasks = [self.grab(i + 1, maps) for i in range(self.number)]
         await asyncio.wait(tasks)
-        await asyncio.sleep(1)
+        await asyncio.sleep(10)
 
 
 class Download:
@@ -94,7 +94,7 @@ class Download:
         semaphore = asyncio.Semaphore(semNumber)
         tasks = [self.downs(i, semaphore) for i in self.maps.keys()]
         await asyncio.wait(tasks)
-        await asyncio.sleep(1)
+        await asyncio.sleep(10)
 
 
 class Merge:
@@ -129,7 +129,9 @@ if __name__ == '__main__':
     g = GetUrl(bvid)
     asyncio.run(g.fetch(av_urls_map))
 
-    with open(f'{path}/map.json', 'w') as f:
+    if not os.path.exists(path):
+        os.makedirs(path)
+    with open(f'{path}/map.json', 'a') as f:
         json.dump(av_urls_map, f, ensure_ascii=False)
 
     d = Download(bvid, path, av_urls_map)
