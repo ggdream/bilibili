@@ -109,7 +109,7 @@ class Merge:
                 f'{self.path}/src/{num}.mp3': None,
             },
             outputs={
-                f'{self.path}/dst/{self.maps[num]["title"]}.mp4': '-c:v h264 -c:a ac3'
+                f'{self.path}/dst/{self.maps[num]["title"]}.mp4': '-c:v copy -c:a copy'
             }
         )
         ff.run()
