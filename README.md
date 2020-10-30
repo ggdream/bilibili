@@ -28,7 +28,7 @@ Author: gdream@yeah.net
 [分支地址](https://github.com/ggdream/bilibili/tree/python)
 ~~~sh
 $ git clone -b python https://github.com/ggdream/bilibili.git
-$ pip install -r requirements.txt
+$ cd bilibili/ && pip install -r requirements.txt
 $ python bilibili.py <BV_Number>                # 注意bilibili.py的路径
 ~~~
 
