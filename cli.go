@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/ggdream/down/core"
+	"github.com/ggdream/bilibili/core"
 	"github.com/urfave/cli/v2"
 	"os"
 )

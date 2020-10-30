@@ -4,7 +4,7 @@ Author: gdream@yeah.net
 ~~~
 > 特此声明：此项目仅供学习使用。如有侵权等法律问题，请尽快联系我删除。如有人用作违法或商业等用途，因此产生的一切法律问题由其个人负责和承担，本项目维护者概不负责。
 
-
+![example](example.png)
 
 ## 使用方式
 注意: 为了合并音视频，本机需要安装ffmpeg，并配置环境变量（Docker方式不需要安装）。([下载ffmpeg](https://ffmpeg.org/download.html))

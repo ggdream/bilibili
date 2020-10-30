@@ -1,4 +1,4 @@
-module github.com/ggdream/down
+module github.com/ggdream/bilibili
 
 go 1.15
 
