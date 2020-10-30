@@ -1,7 +1,8 @@
 package main
 
 import (
-	"github.com/ggdream/bilibili/core"
+	"fmt"
+	"github.com/ggdream/down/core"
 	"github.com/urfave/cli/v2"
 	"os"
 )
@@ -55,6 +56,10 @@ func tApp() error {
 func setSettings(app *cli.App) {
 	app.Flags = []cli.Flag{ aFlag, cFlag, pFlag }
 	app.Action = func(c *cli.Context) error {
+		if c.NArg() == 0 {
+			fmt.Println("Please entry a bv number.")
+			return nil
+		}
 		g, err := core.New(c.Args().Get(0), path, cNum, all)
 		if err != nil {
 			return err
