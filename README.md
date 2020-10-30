@@ -36,7 +36,7 @@ $ python bilibili.py <BV_Number>                # 注意bilibili.py的路径
 [分支地址](https://github.com/ggdream/bilibili/tree/golang)
 ~~~sh
 $ go get https://github.com/ggdream/bilibili    # 会自动编译成二进制文件到$GOBIN下
-$ down <BV_Number>                              # 其他功能使用($down --help)查看帮助
+$ bilibili <BV_Number>                              # 其他功能使用($down --help)查看帮助
 ~~~
 
 # Docker
