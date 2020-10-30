@@ -3,3 +3,6 @@
 
 *.pyd
 *.pyi
+
+*_test.go
+*.exe
