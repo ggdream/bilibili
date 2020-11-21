@@ -7,21 +7,26 @@ Author: gdream@yeah.net
 ![example](./docs/example.png)
 
 ## 使用方式
-注意: 为了合并音视频，本机需要安装ffmpeg，并配置环境变量（Docker方式不需要安装）。([下载ffmpeg](https://ffmpeg.org/download.html))
+注意: 为了合并音视频，本机需要安装ffmpeg，并配置环境变量（Docker方式不需要安装）。
 
-[一、Python env](#python)
-
-[二、Golang env](#golang)
-
-[三、Docker env](#docker)
-
+1. Linux: sudo apt/yum/snap install ffmpeg
+2. Macos: sudo brew install ffmpeg
+3. Windows: [下载ffmpeg](https://github.com/BtbN/FFmpeg-Builds/releases)
 
 
 ## 使用详明
 # 二进制文件
 [Release地址](https://github.com/ggdream/bilibili/releases)
 ~~~sh
-将路径添加到环境变量中即可在全路径下使用
+如果你不是相关开发者，那么我强烈推荐你使用这种方式安装。将路径添加到环境变量中即可在全路径下使用
+~~~
+
+# Golang
+[分支地址](https://github.com/ggdream/bilibili/tree/golang)
+~~~sh
+# 如果你是一位Gopher，那么推荐你使用这种方式进行安装
+$ go get github.com/ggdream/bilibili    # 会自动编译成二进制文件到$GOBIN下
+$ bilibili <BV_Number>                              # 其他功能使用($bilibili --help)查看帮助
 ~~~
 
 # Python
@@ -29,15 +34,9 @@ Author: gdream@yeah.net
 ~~~sh
 $ git clone -b python https://github.com/ggdream/bilibili.git
 $ cd bilibili/ && pip install -r requirements.txt
-$ python bilibili.py <BV_Number>                # 注意bilibili.py的路径
+$ python bilibili.py              # 交互式读取输入
 ~~~
 
-# Golang
-[分支地址](https://github.com/ggdream/bilibili/tree/golang)
-~~~sh
-$ go get https://github.com/ggdream/bilibili    # 会自动编译成二进制文件到$GOBIN下
-$ bilibili <BV_Number>                              # 其他功能使用($down --help)查看帮助
-~~~
 
 # Docker
 ~~~sh

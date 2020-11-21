@@ -1,8 +1,16 @@
 .idea/
 .vscode/
+.dart_tool/
+
+dist/
+dst/
+src/
+
+.packages
 
 *.pyd
 *.pyi
 
-*_test.go
-*.exe
+# *_test.go
+blibili.exe
+blibili

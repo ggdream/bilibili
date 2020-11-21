@@ -2,16 +2,19 @@ package core
 
 import (
 	"fmt"
-	"github.com/panjf2000/ants/v2"
+	"os"
 	"os/exec"
 	"path"
 	"runtime"
 	"sync"
 	"time"
+
+	"github.com/panjf2000/ants/v2"
 )
 
 type merge struct {
 	Path		string
+	Save		bool
 	Details		[]*detail
 
 	pool		*ants.Pool
@@ -32,8 +35,19 @@ func (m *merge) g(i int) {
 		m.Details[i].Rank,
 	)
 	if err := cmd.Run(); err != nil && err.Error() != "exit status 1" {
-		fmt.Println("ffmpeg", err)
+		fmt.Println("ffmpeg:", err)
+		return
 	}
+ 
+	if !m.Save {
+		if err := os.Remove(path.Join(m.Path, "src", fmt.Sprintf("%d.mp4", m.Details[i].Rank))); err != nil {
+			fmt.Println(err)
+		}
+		if err := os.Remove(path.Join(m.Path, "src", fmt.Sprintf("%d.mp3", m.Details[i].Rank))); err != nil {
+			fmt.Println(err)
+		}
+	}
+
 	fmt.Printf("%s	- Merge %3d <<🎉\n",
 		time.Now().Format("2006-01-02 15:04:05"),
 		m.Details[i].Rank,
@@ -60,11 +74,11 @@ func (m *merge) Do() error {
 	return nil
 }
 
-
-func Merger(details []*detail, path string) *merge {
+func Merger(details []*detail, path string, save bool) *merge {
 	pool, _ := ants.NewPool(runtime.NumCPU())
 	return &merge{
 		Path:    path,
+		Save:	 save,
 		Details: details,
 		pool:    pool,
 		wg:      sync.WaitGroup{},

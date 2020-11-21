@@ -10,11 +10,12 @@ import (
 var (
 	name    = "down"
 	version = "1.0.0"
-	usage   = "$ down [-a, [-c, [-d]]] <bv>"
+	usage   = "$ bilibili [-a, [-c, [-d]]] <bv>"
 
 	all  bool
 	path string
-	cNum = 1 << 3
+	save bool
+	cNum = 1 << 2
 
 	aFlag = &cli.BoolFlag{
 		Name:        "all",
@@ -29,6 +30,13 @@ var (
 		Usage:       "The amount of concurrency.",
 		Value:       cNum,
 		Destination: &cNum,
+	}
+	sFlag = &cli.BoolFlag{
+		Name:		"save",
+		Aliases: 	[]string{"s"},
+		Usage: 		"Save src media",
+		Value: 		save,
+		Destination: &save,
 	}
 	pFlag = &cli.StringFlag{
 		Name:        "path",
@@ -52,13 +60,18 @@ func tApp() error {
 }
 
 func setSettings(app *cli.App) {
-	app.Flags = []cli.Flag{aFlag, cFlag, pFlag}
+	app.Flags = []cli.Flag{aFlag, cFlag, sFlag, pFlag}
 	app.Action = func(c *cli.Context) error {
+		var id string
 		if c.NArg() == 0 {
-			fmt.Println("Please entry a bv number.")
-			return nil
+			fmt.Print("Please entry a bv number: ")
+			if _, err := fmt.Scan(&id); err != nil {
+				return err
+			}
+		} else {
+			id = c.Args().Get(0)
 		}
-		g, err := core.New(c.Args().Get(0), path, cNum, all)
+		g, err := core.New(id, path, save, cNum, all)
 		if err != nil {
 			return err
 		}

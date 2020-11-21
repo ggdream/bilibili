@@ -32,7 +32,12 @@ func NewParse(id string) (*Parser, error) {
 
 func (p *Parser) reBase(data string) string {
 	reg := regexp.MustCompile(`window.__INITIAL_STATE__=(.*?);\(function`)
-	return reg.FindStringSubmatch(data)[1]
+	d := reg.FindStringSubmatch(data)
+	if len(d) < 2 {
+		fmt.Println("Wrong bv number.")
+		os.Exit(-1)
+	}
+	return d[1]
 }
 func (p *Parser) rePlay(data string) string {
 	reg := regexp.MustCompile(`window.__playinfo__=(.*?)</script>`)
@@ -110,6 +115,7 @@ func (p *Parser) Down(id, url, dst string) error {
 	if err != nil {
 		return err
 	}
+	defer f.Close()
 	if _, err := io.Copy(f, res.Body); err != nil {
 		return err
 	}

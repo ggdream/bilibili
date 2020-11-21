@@ -17,6 +17,7 @@ import (
 type Dash struct {
 	ID			string
 	Path		string
+	Save		bool
 	All			bool
 	Details		[]*detail
 
@@ -36,12 +37,13 @@ type detail struct {
 }
 
 //TODO
-func New(id, path string, goNum int, all bool) (*Dash, error) {
+func New(id, _path string, save bool, goNum int, all bool) (*Dash, error) {
 	pool, _ := ants.NewPool(goNum)
 	dash := &Dash{
 		ID:     id,
 		All: 	all,
-		Path: 	path,
+		Path: 	_path,
+		Save: 	save,
 		wg:		sync.WaitGroup{},
 		lock:	sync.Mutex{},
 		pool:	pool,
@@ -66,6 +68,16 @@ func New(id, path string, goNum int, all bool) (*Dash, error) {
 			return nil, err
 		}
 		dash.parseSelectLinks(noArray)
+	}
+
+	record, err := os.Create(path.Join(_path, "src", "media.txt"))
+	if err != nil {
+		return nil, err
+	}
+	defer record.Close()
+	if _, err := record.WriteString(id); err != nil {
+		println(err.Error())
+		return nil, err
 	}
 
 	return dash, nil
@@ -147,7 +159,7 @@ func (d *Dash) Run() error {
 	fmt.Println("🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈")
 	d.down()
 	fmt.Println("🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈")
-	merger := Merger(d.Details, d.Path)
+	merger := Merger(d.Details, d.Path, d.Save)
 	if err := merger.Do(); err != nil {
 		return err
 	}

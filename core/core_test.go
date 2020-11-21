@@ -19,6 +19,12 @@ var a = `{
   ]
 }`
 
+
+func TestData(t *testing.T){
+	println(data)
+	println(a)
+}
+
 func TestParser_GetSubTitlesTable(t *testing.T) {
 	p, err := NewParse(bv)
 	if err != nil {
@@ -29,9 +35,10 @@ func TestParser_GetSubTitlesTable(t *testing.T) {
 }
 
 func TestDash_Init(t *testing.T) {
-	d := New(bv, 5)
-	d.GetPlayInfos()
-	d.Run()
+	d, _ := New(bv, "", true, 4, true)
+	if err := d.Run(); err != nil {
+		panic(err)
+	}
 }
 
 func TestMerge_Do(t *testing.T) {
