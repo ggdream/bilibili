@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	name    = "down"
-	version = "1.0.0"
+	name    = "bilibili"
+	version = "1.1.6"
 	usage   = "$ bilibili [-a, [-c, [-d]]] <bv>"
 
 	all  bool
