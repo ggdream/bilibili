@@ -70,16 +70,6 @@ func New(id, _path string, save bool, goNum int, all bool) (*Dash, error) {
 		dash.parseSelectLinks(noArray)
 	}
 
-	record, err := os.Create(path.Join(_path, "src", "media.txt"))
-	if err != nil {
-		return nil, err
-	}
-	defer record.Close()
-	if _, err := record.WriteString(id); err != nil {
-		println(err.Error())
-		return nil, err
-	}
-
 	return dash, nil
 }
 
