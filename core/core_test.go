@@ -35,10 +35,10 @@ func TestParser_GetSubTitlesTable(t *testing.T) {
 }
 
 func TestDash_Init(t *testing.T) {
-	d, _ := New(bv, "", true, 4, true)
-	if err := d.Run(); err != nil {
-		panic(err)
-	}
+	//d, _ := New(bv, "", true, 4, true)
+	//if err := d.Run(); err != nil {
+	//	panic(err)
+	//}
 }
 
 func TestMerge_Do(t *testing.T) {
