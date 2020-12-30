@@ -1,0 +1,18 @@
+os: linux
+dist: focal
+
+language: go
+go:
+    - 1.13.x
+    - 1.14.x
+    - 1.15.x
+
+script:
+    - go test -v ./...
+
+notifications:
+    email:
+        recipients:
+            - 1586616064@qq.com
+        on_success: always
+        on_failure: always
