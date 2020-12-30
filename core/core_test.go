@@ -1,6 +1,7 @@
 package core
 
 import (
+	"fmt"
 	"os/exec"
 	"testing"
 )
@@ -19,8 +20,7 @@ var a = `{
   ]
 }`
 
-
-func TestData(t *testing.T){
+func TestData(t *testing.T) {
 	println(data)
 	println(a)
 }
@@ -45,7 +45,6 @@ func TestMerge_Do(t *testing.T) {
 	println(1)
 	cmd := exec.Command("pip", "install", "numpy", "")
 	if err := cmd.Run(); err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 }
-
