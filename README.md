@@ -1,4 +1,4 @@
-# bilibili视频下载器
+# bilibili视频下载器[![Build Status](https://travis-ci.com/ggdream/bilibili.svg?branch=master)](https://travis-ci.com/ggdream/bilibili)
 ~~~shell script
 Author: gdream@yeah.net
 ~~~

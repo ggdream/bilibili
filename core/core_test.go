@@ -1,6 +1,7 @@
 package core
 
 import (
+	"fmt"
 	"os/exec"
 	"testing"
 )
@@ -19,8 +20,7 @@ var a = `{
   ]
 }`
 
-
-func TestData(t *testing.T){
+func TestData(t *testing.T) {
 	println(data)
 	println(a)
 }
@@ -35,17 +35,16 @@ func TestParser_GetSubTitlesTable(t *testing.T) {
 }
 
 func TestDash_Init(t *testing.T) {
-	d, _ := New(bv, "", true, 4, true)
-	if err := d.Run(); err != nil {
-		panic(err)
-	}
+	//d, _ := New(bv, "", true, 4, true)
+	//if err := d.Run(); err != nil {
+	//	panic(err)
+	//}
 }
 
 func TestMerge_Do(t *testing.T) {
 	println(1)
 	cmd := exec.Command("pip", "install", "numpy", "")
 	if err := cmd.Run(); err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 }
-
