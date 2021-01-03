@@ -9,7 +9,7 @@ import (
 
 var (
 	name    = "bilibili"
-	version = "1.1.6"
+	version = "1.1.7"
 	usage   = "$ bilibili [-a, [-c, [-d]]] <bv>"
 
 	all  bool
