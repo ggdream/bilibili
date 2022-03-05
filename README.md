@@ -15,10 +15,11 @@ Author: gdream@yeah.net
 
 
 ## 使用详明
-# 二进制文件
+# 二进制文件 或 GUI界面
 [Release地址](https://github.com/ggdream/bilibili/releases)
 ~~~sh
 如果你不是相关开发者，那么我强烈推荐你使用这种方式安装。将路径添加到环境变量中即可在全路径下使用
+因Flutter FFmpeg插件限制，GUI目前仅保证在Android和iOS端顺利运行
 ~~~
 
 # Golang
