@@ -14,6 +14,8 @@ dependencies:
   device_preview: 1.0.0
   dio: 4.0.4
   ffmpeg_kit_flutter_min: 4.5.1
+  file_selector: 0.8.4
+  file_selector_linux: 0.0.2+1
   flutter_easyloading: 3.0.3
   gallery_saver: 2.3.2
   get: 4.6.1
@@ -21,6 +23,7 @@ dependencies:
   path: 1.8.0
   path_provider: 2.0.9
   permission_handler: 8.3.0
+  process_run: 0.12.3+2
 
 dev_dependencies:
   flutter_test:
