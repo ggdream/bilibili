@@ -125,7 +125,7 @@ class DetailController extends GetxController {
 
     try {
       await Shell().run(
-        '$execPath -hide_banner -i "$vName" -i "$aName" -c copy -y "$dName"',
+        '"$execPath" -hide_banner -i "$vName" -i "$aName" -c copy -y "$dName"',
       );
     } catch (e) {
       Toast.text(e.toString());
