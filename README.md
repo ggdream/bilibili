@@ -7,7 +7,7 @@ Author: gdream@yeah.net
 ![example](./docs/example.png)
 
 ## 使用方式
-注意: 为了合并音视频，本机需要安装ffmpeg，并配置环境变量（Docker方式不需要安装）。
+注意: 为了合并音视频，本机需要安装ffmpeg，并配置环境变量（Docker方式和Flutter-App不需要安装）。
 
 1. Linux: sudo apt/yum/snap install ffmpeg
 2. Macos: sudo brew install ffmpeg
@@ -15,11 +15,12 @@ Author: gdream@yeah.net
 
 
 ## 使用详明
-# 二进制文件 或 GUI界面
+# 命令行工具 或 GUI界面
 [Release地址](https://github.com/ggdream/bilibili/releases)
 ~~~sh
 如果你不是相关开发者，那么我强烈推荐你使用这种方式安装。将路径添加到环境变量中即可在全路径下使用
-因Flutter FFmpeg插件限制，GUI目前仅保证在Android和iOS端顺利运行
+- 命令行工具支持：Windows,Linux,MacOS
+- GUI支持：Android,iOS,Windows,Linux
 ~~~
 
 # Golang
