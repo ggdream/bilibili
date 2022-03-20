@@ -33,6 +33,19 @@ class Net extends GetConnect {
     await Dio(opts).download(url, dst);
   }
 
+  Future<void> downloadCover(String url, String dst) async {
+    final opts = BaseOptions(
+      connectTimeout: Global.config.net.timeout.inMilliseconds,
+      headers: {
+        'referer': 'https://www.bilibili.com/',
+        'range': 'bytes=0-',
+        'user-agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36',
+      },
+    );
+    await Dio(opts).download(url, dst);
+  }
+
   Future<VideoMetaInfoModel?> getVideoMetaInfo(String bvid) async {
     final url = 'https://www.bilibili.com/video/$bvid';
     final html = await httpGet<String>(url);
@@ -62,6 +75,14 @@ class Net extends GetConnect {
     final data = json.decode(res2.first);
 
     return VideoLinksModel().fromJson(data);
+  }
+
+  Future<String?> getBvidFromShortUrl(String url) async {
+    httpClient.followRedirects = false;
+    final res = await get(url);
+    httpClient.followRedirects = true;
+
+    return res.headers?['location'];
   }
 
   Future<T?> httpGet<T>(

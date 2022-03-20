@@ -1,13 +1,16 @@
-import 'package:bilibili/tools/loading/loading.dart';
-import 'package:bilibili/widgets/dialog/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:path/path.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'package:bilibili/net/net.dart';
 import 'package:bilibili/router/router.dart';
+import 'package:bilibili/tools/loading/loading.dart';
+import 'package:bilibili/tools/selector/selector.dart';
+import 'package:bilibili/tools/toast/toast.dart';
+import 'package:bilibili/widgets/dialog/dialog.dart';
 
 import 'model.dart';
 
@@ -50,7 +53,15 @@ class HomeController extends GetxController with StateMixin {
     final url = editingController.text;
     if (url.isEmpty) return;
 
-    final bvid = url.split('/').last;
+     bvid = url.split('/').last;
+    if (!bvid.startsWith('BV')) {
+      bvid = (await Net.to.getBvidFromShortUrl(url) ?? '').split('/').last;
+    }
+    if (bvid.isEmpty) {
+      Toast.text('链接有误');
+      return;
+    }
+
     await _getVideoMetaInfo(bvid);
   }
 
@@ -59,7 +70,7 @@ class HomeController extends GetxController with StateMixin {
 
     final args = {
       'title': title,
-      'bvid': editingController.text.split('/').last,
+      'bvid': bvid,
       'data': videos,
     };
     await Get.toNamed(AppRouter.detail, arguments: args);
@@ -107,7 +118,18 @@ class HomeController extends GetxController with StateMixin {
     if (res != true) return;
 
     Loading.show('保存封面中');
-    final status = await GallerySaver.saveImage(cover);
+    bool? status;
+    if (GetPlatform.isDesktop) {
+      final path = await Selector.pickDirectoryPath();
+      if (path == null) return;
+      await Net.to.downloadCover(
+        cover,
+        joinAll([path, title + extension(cover)]),
+      );
+      status = true;
+    } else {
+      status = await GallerySaver.saveImage(cover, albumName: title);
+    }
 
     await Loading.close();
     if (status == true) {
