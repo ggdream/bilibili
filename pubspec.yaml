@@ -1,5 +1,6 @@
 name: bilibili
 description: A bilibli video gui downloader.
+version: 2.1.0
 publish_to: 'none'
 
 environment:
