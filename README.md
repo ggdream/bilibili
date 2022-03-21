@@ -23,6 +23,12 @@ Author: gdream@yeah.net
 - GUI支持：Android,iOS,Windows,Linux
 ~~~
 
+# Flutter
+[分支地址](https://github.com/ggdream/bilibili/tree/dart)
+```sh
+拉取`dart`分支代码，使用flutter命令直接运行或编译后运行即可
+```
+
 # Golang
 [分支地址](https://github.com/ggdream/bilibili/tree/golang)
 ~~~sh
