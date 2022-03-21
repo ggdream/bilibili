@@ -33,7 +33,7 @@ Author: gdream@yeah.net
 [分支地址](https://github.com/ggdream/bilibili/tree/golang)
 ~~~sh
 # 如果你是一位Gopher，那么推荐你使用这种方式进行安装
-$ go get github.com/ggdream/bilibili    # 会自动编译成二进制文件到$GOBIN下
+$ go get github.com/ggdream/bilibili && go install github.com/ggdream/bilibili    # 会自动编译成二进制文件到$GOBIN下
 $ bilibili <BV_Number>                              # 其他功能使用($bilibili --help)查看帮助
 ~~~
 
