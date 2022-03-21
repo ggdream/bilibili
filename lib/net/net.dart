@@ -64,7 +64,7 @@ class Net extends GetConnect {
     final url = 'https://www.bilibili.com/video/$bvid';
     final html = await httpGet<String>(
       url,
-      query: {'q': no.toString()},
+      query: {'p': no.toString()},
     );
     if (html == null) return null;
 
