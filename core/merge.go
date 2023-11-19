@@ -2,7 +2,6 @@ package core
 
 import (
 	"fmt"
-	"os"
 	"os/exec"
 	"path"
 	"runtime"
@@ -40,12 +39,12 @@ func (m *merge) g(i int) {
 	}
  
 	if !m.Save {
-		if err := os.Remove(path.Join(m.Path, "src", fmt.Sprintf("%d.mp4", m.Details[i].Rank))); err != nil {
-			fmt.Println(err)
-		}
-		if err := os.Remove(path.Join(m.Path, "src", fmt.Sprintf("%d.mp3", m.Details[i].Rank))); err != nil {
-			fmt.Println(err)
-		}
+		// if err := os.Remove(path.Join(m.Path, "src", fmt.Sprintf("%d.mp4", m.Details[i].Rank))); err != nil {
+		// 	fmt.Println(err)
+		// }
+		// if err := os.Remove(path.Join(m.Path, "src", fmt.Sprintf("%d.mp3", m.Details[i].Rank))); err != nil {
+		// 	fmt.Println(err)
+		// }
 	}
 
 	fmt.Printf("%s	- Merge %3d <<🎉\n",
